@@ -1,0 +1,116 @@
+/* ==========================================================================
+   section / 
+   ========================================================================== */
+
+.section {
+    padding: 125px 0;
+
+    &.section--no-pb {
+        padding-bottom: 0;
+    }
+}
+
+.section__header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 50px;
+    p {
+        max-width: 58%;
+        text-align: right;
+        margin-bottom: 0;
+    }
+    @media screen and (max-width: $breakpoint-md) {
+        align-items: flex-start;
+        p {
+            max-width: unset;
+            text-align: left;
+        }
+    }
+}
+.cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+
+    @media screen and (max-width: $breakpoint-md) {
+        grid-template-columns: 1fr 1fr;
+    }
+    @media screen and (max-width: $breakpoint-sm) {
+        grid-template-columns: 1fr;
+    }
+}
+.card {
+    position: relative;
+    overflow: hidden;
+    @media screen and (max-width: $breakpoint-sm) {
+        aspect-ratio: unset;
+    }
+}
+.card__media {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+
+        transition: 0.4s transform $ease-out-expo;
+    }
+    @media screen and (max-width: $breakpoint-sm) {
+        aspect-ratio: 16 / 9;
+    }
+}
+.card__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    color: var(--color-white);
+    transform: translateX(-100%);
+    transition: 0.4s transform $ease-out-expo;
+    .icon {
+        font-size: 64px;
+    }
+
+    @media screen and (max-width: $breakpoint-sm) {
+        position: relative;
+        transform: unset;
+        height: auto;
+        background-color: unset;
+        padding: 24px 0 0;
+        color: var(--color-black);
+    }
+}
+
+@media screen and (min-width: $breakpoint-sm) {
+    .card:hover {
+        .card__media {
+            img {
+                transform: scale(1.2);
+            }
+        }
+        .card__content {
+            transform: translateX(0);
+        }
+    }
+}
+
+.swiper {
+    height: 70vh;
+    position: relative;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
