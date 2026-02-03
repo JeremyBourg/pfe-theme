@@ -7,6 +7,7 @@ register_nav_menus(array(
 	'footer_menu' => 'Menu du pied de page',
 ));
 
+if(!function_exists('render_gallery')) {
 function render_gallery() {
 	ob_start();
  ?>
@@ -31,7 +32,9 @@ function render_gallery() {
 <?php
 	return ob_get_clean();
 }
+}
 
+if(!function_exists('render_cta')) {
 function render_cta() {
 	ob_start();
  ?>
@@ -43,8 +46,9 @@ function render_cta() {
 	</div>
 <?php
 	return ob_get_clean();
-	}
+}}
 
+if(!function_exists('render_hero')) {
 function render_hero() {
 	ob_start();
 ?>
@@ -70,7 +74,25 @@ function render_hero() {
 	</section>
 <?php
 	return ob_get_clean();
-}
+}}
+
+if(!function_exists('render_video')) {
+function render_video() {
+	ob_start();
+?>
+
+<?php
+	return ob_get_clean();
+}}
+
+if(!function_exists('render_cards')) {
+function render_cards() {
+	ob_start();
+?>
+		
+<?php
+	return ob_get_clean();
+}}
 
 function render_blocks() {
 	if(have_rows("blocks")) {
@@ -83,6 +105,10 @@ function render_blocks() {
 				echo render_cta();
 			elseif(get_row_layout() == "hero")
 				echo render_hero();
+			elseif(get_row_layout() == "cards")
+				echo render_cards();
+			elseif(get_row_layout() == "video")
+				echo render_video();
 		}
 	}
 }
