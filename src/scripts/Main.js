@@ -2,16 +2,16 @@ import ComponentFactory from './ComponentFactory.js';
 import Icons from './utils/Icons.js';
 
 class Main {
-  constructor() {
-    this.init();
-  }
+	constructor() {
+		this.init();
+	}
 
-  init() {
-    document.documentElement.classList.add('has-js');
+	init() {
+		document.documentElement.classList.add('has-js');
 
-    Icons.load();
-    new ComponentFactory();
-  }
+		Icons.load();
+		new ComponentFactory();
+	}
 }
 
 new Main();
