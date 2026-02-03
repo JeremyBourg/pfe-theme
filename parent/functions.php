@@ -43,6 +43,48 @@ function render_cta() {
 	</div>
 <?php
 	return ob_get_clean();
+	}
+
+function render_hero() {
+	ob_start();
+?>
+	<section class="hero">
+		<div class="wrapper">
+			<div class="hero__media">
+				<?php $image = get_sub_field("image"); ?>
+				<?php echo wp_get_attachment_image( $image['ID'], 'full' ); ?>
+			</div>
+			<div class="hero__content">
+				<?php if(get_sub_field("title")): ?>	
+				<h1>
+					<?php the_sub_field("title"); ?>
+				</h1>
+				<?php endif; ?>
+				<?php if(get_sub_field("content")): ?>	
+				<p>
+					<?php the_sub_field("content"); ?>
+				</p>
+				<?php endif; ?>
+			</div>
+		</div>
+	</section>
+<?php
+	return ob_get_clean();
+}
+
+function render_blocks() {
+	if(have_rows("blocks")) {
+		while(have_rows("blocks")) {
+			the_row();
+
+			if(get_row_layout() == "gallery")
+				echo render_gallery();
+			elseif(get_row_layout() == "cta")
+				echo render_cta();
+			elseif(get_row_layout() == "hero")
+				echo render_hero();
+		}
+	}
 }
 
 $placeholder = get_bloginfo("template_url") . "/strawberry.jpg";
