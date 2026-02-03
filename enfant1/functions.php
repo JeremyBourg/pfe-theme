@@ -13,7 +13,7 @@ function render_hero()
 			<div class="hero__content">
 				<?php if(get_sub_field("title")): ?>	
 				<h1>
-					enfant 1
+					enfant 1 (contenu modifié)
 				</h1>
 				<?php endif; ?>
 				<?php if(get_sub_field("content")): ?>	

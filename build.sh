@@ -50,7 +50,7 @@ for theme in ${themes[@]}; do
 	echo "updating $theme..."
 	if [[ -n $USERNAME && -n $PASSWORD ]]; then
 		lftp -u $USERNAME,$PASSWORD -e \
-			"${SET_LFTP_OPTS} mirror -R --verbose $theme $REMOTE_THEME_DIR/ --exclude dist; bye;" -p 21 ftp://ftp.dectim.ca
+			"${SET_LFTP_OPTS} mirror -R --verbose --delete $theme $REMOTE_THEME_DIR/ --exclude dist; bye;" -p 21 ftp://ftp.dectim.ca
 	else
 		if [[ -z $USERNAME ]]; then
 			echo "ERROR: USERNAME envvar not set, not updating remote server"

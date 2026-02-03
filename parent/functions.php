@@ -34,14 +34,17 @@ function render_gallery() {
 }
 }
 
-if(!function_exists('render_cta')) {
-function render_cta() {
+if(!function_exists('render_excerpt')) {
+function render_excerpt() {
 	ob_start();
  ?>
-	<div class="section section--no-pb">
+	<div class="section excerpt"
+<?php if(get_sub_field("color")): ?>
+	style="background-color: <?php the_sub_field("color"); ?>;"
+<?php endif; ?>
 		<div class="wrapper">
-			<?php the_sub_field('content'); ?>
-			<a href="<?php the_sub_field('lien_vers'); ?>">En savoir plus</a>
+			<h4><?php the_sub_field('content'); ?></h4>
+			<a class="button" href="<?php the_sub_field('lien_vers'); ?>">En savoir plus</a>
 		</div>
 	</div>
 <?php
@@ -101,8 +104,8 @@ function render_blocks() {
 
 			if(get_row_layout() == "gallery")
 				echo render_gallery();
-			elseif(get_row_layout() == "cta")
-				echo render_cta();
+			elseif(get_row_layout() == "excerpt")
+				echo render_excerpt();
 			elseif(get_row_layout() == "hero")
 				echo render_hero();
 			elseif(get_row_layout() == "cards")
