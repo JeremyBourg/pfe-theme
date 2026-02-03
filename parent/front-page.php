@@ -1,5 +1,21 @@
 <?php get_header(); ?>
 
+<section class="hero">
+	<div class="wrapper">
+		<div class="hero__media">
+			<?php the_post_thumbnail('full'); ?>
+		</div>
+		<div class="hero__content">
+			<h1>
+				PARENT
+			</h1>
+			<p>
+				<?php the_content(); ?>
+			</p>
+		</div>
+	</div>
+</section>
+
 <?php
 /* render page builder blocks */
 render_blocks();
