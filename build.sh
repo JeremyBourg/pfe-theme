@@ -13,16 +13,14 @@ REMOTE_THEME_DIR="/public_html/pfe/constructeur/wp-content/themes/"
 
 SET_LFTP_OPTS="set ftp:ssl-allow yes; set ssl:verify-certificate no;"
 
+themes=("parent" "enfant1" "enfant2")
 if [[ $# -gt 0 ]]; then
 	if [ -d "$1" ]; then
-		THEME="$1"
+		themes=("$1")
 	else
 		echo "Invalid directory specified"
 		exit 1
 	fi
-else
-	echo "Missing argument"
-	exit 1
 fi
 
 # set these variables manually
@@ -34,13 +32,8 @@ if ! diff -qr "dist" "parent/dist" &>/dev/null; then
 	rm -rf "parent/dist"
 	cp -pr "dist/" "parent"
 	if [[ -n $USERNAME && -n $PASSWORD ]]; then
-		if [[ $THEME -eq "parent" ]]; then
-			lftp -u $USERNAME,$PASSWORD -e \
-				"${SET_LFTP_OPTS} mirror -R --verbose $THEME $REMOTE_THEME_DIR/; bye;" -p 21 ftp://ftp.dectim.ca
-		else
-			lftp -u $USERNAME,$PASSWORD -e \
-				"${SET_LFTP_OPTS} mirror -R --verbose parent $REMOTE_THEME_DIR/ --exclude dist/styles; bye;" -p 21 ftp://ftp.dectim.ca
-		fi
+		lftp -u $USERNAME,$PASSWORD -e \
+			"${SET_LFTP_OPTS} mirror -R --verbose parent $REMOTE_THEME_DIR/; bye;" -p 21 ftp://ftp.dectim.ca
 		exit 0
 	else
 		if [[ -z $USERNAME ]]; then
@@ -53,16 +46,18 @@ if ! diff -qr "dist" "parent/dist" &>/dev/null; then
 	fi
 fi
 
-echo "updating $THEME..."
-if [[ -n $USERNAME && -n $PASSWORD ]]; then
-	lftp -u $USERNAME,$PASSWORD -e \
-		"${SET_LFTP_OPTS} mirror -R --verbose $THEME $REMOTE_THEME_DIR/ --exclude dist; bye;" -p 21 ftp://ftp.dectim.ca
-else
-	if [[ -z $USERNAME ]]; then
-		echo "ERROR: USERNAME envvar not set, not updating remote server"
+for theme in ${themes[@]}; do
+	echo "updating $theme..."
+	if [[ -n $USERNAME && -n $PASSWORD ]]; then
+		lftp -u $USERNAME,$PASSWORD -e \
+			"${SET_LFTP_OPTS} mirror -R --verbose $theme $REMOTE_THEME_DIR/ --exclude dist; bye;" -p 21 ftp://ftp.dectim.ca
+	else
+		if [[ -z $USERNAME ]]; then
+			echo "ERROR: USERNAME envvar not set, not updating remote server"
+		fi
+		if [[ -z $PASSWORD ]]; then
+			echo "ERROR: PASSWORD envvar not set, not updating remote server"
+		fi
+		exit 1
 	fi
-	if [[ -z $PASSWORD ]]; then
-		echo "ERROR: PASSWORD envvar not set, not updating remote server"
-	fi
-	exit 1
-fi
+done
