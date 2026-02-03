@@ -17,7 +17,7 @@ function render_gallery() {
 				<h2>Image</h2>
 			</div>
 		</div>
-		<div class="swiper mySwiper">
+		<div class="swiper" data-component="Swiper">
 			<div class="swiper-wrapper">
 				<?php while(have_rows("gallery")): the_row(); ?>
 					<?php $image = get_sub_field("image"); ?>

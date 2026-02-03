@@ -1,4 +1,3 @@
-import Swiper from 'swiper/bundle';
 import ComponentFactory from './ComponentFactory.js';
 import Icons from './utils/Icons.js';
 
@@ -12,13 +11,6 @@ class Main {
 
     Icons.load();
     new ComponentFactory();
-
-    var swiper = new Swiper('.mySwiper', {
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-    });
   }
 }
 
