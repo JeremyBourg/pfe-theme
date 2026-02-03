@@ -17,3 +17,6 @@ npm-debug.log
 [Dd]esktop.ini
 Thumbs.db
 scripts/tmp
+
+# PHP
+vendor/
