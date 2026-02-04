@@ -51,7 +51,6 @@ export default class YouTube {
 			this.element.removeEventListener('click', this.initPlayer);
 		}
 
-		console.log(this.videoId);
 		this.player = new YT.Player(this.videoContainer, {
 			height: '100%',
 			width: '100%',
