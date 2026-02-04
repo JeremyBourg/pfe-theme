@@ -1,0 +1,36 @@
+.cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+
+    @media screen and (max-width: $breakpoint-md) {
+        grid-template-columns: 1fr 1fr;
+    }
+    @media screen and (max-width: $breakpoint-sm) {
+        grid-template-columns: 1fr;
+    }
+}
+.card {
+    position: relative;
+    overflow: hidden;
+	text-align: center;
+	padding: 32px;
+	border-radius: 32px;
+    @media screen and (max-width: $breakpoint-sm) {
+        aspect-ratio: unset;
+    }
+
+	.icon {
+		font-size: 4em;
+	}
+
+	&:nth-child(3n+1) {
+		background-color: skyblue;
+	}
+	&:nth-child(3n+2) {
+		background-color: crimson;
+	}
+	&:nth-child(3n) {
+		background-color: lightgreen;
+	}
+}
