@@ -14,17 +14,17 @@ insert_final_newline = true
 charset = utf-8
 
 [*.html]
-indent_style = tabs
+indent_style = tab
 indent_size = 4
 quote_type = double
 max_line_length = 160
 
 [*.scss]
-indent_style = tabs
+indent_style = tab
 indent_size = 4
 quote_type = double
 
 [*.js]
-indent_style = tabs
+indent_style = tab
 indent_size = 4
 quote_type = double
