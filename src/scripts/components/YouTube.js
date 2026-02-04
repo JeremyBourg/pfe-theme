@@ -42,7 +42,7 @@ export default class YouTube {
 		if (this.poster) {
 			this.element.addEventListener('click', this.initPlayer);
 		} else {
-			this.initPlayer().bind(this);
+			this.initPlayer();
 		}
 	}
 
