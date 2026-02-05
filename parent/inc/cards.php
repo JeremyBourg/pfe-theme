@@ -1,9 +1,9 @@
-<?php if(have_rows("cards")): ?>
+<?php if(have_rows("cards-blocks")): ?>
 <div class="section">
 	<div class="wrapper">
 		<h2>Bloc cartes</h2>
 		<div class="cards">
-			<?php while(have_rows("cards")): the_row(); ?>	
+			<?php while(have_rows("cards-blocks")): the_row(); ?>	
 			<div class="card">
 				<svg class="icon">
 					<use xlink:href="#icon-<?php if(get_sub_field("icon")) the_sub_field("icon"); ?>"></use>

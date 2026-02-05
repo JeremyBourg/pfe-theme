@@ -16,6 +16,9 @@
 	</div>
 </section>
 
+<div class="wrapper" style="text-align: center;">
+	<h1>Constructeur</h1>
+</div>
 <?php
 /* render page builder blocks */
 render_blocks();
