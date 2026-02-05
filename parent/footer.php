@@ -42,6 +42,6 @@
         <p class="copyright">Tous droits réservés © 2025 tim canada.</p>
     </div>
 </footer>
-<?php wp_footer(); ?>
+<?php if(current_user_can('administrator')) wp_footer(); ?>
 </body>
 </html>

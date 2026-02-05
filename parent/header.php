@@ -13,7 +13,7 @@
 
 		<script src="<?php bloginfo('template_url'); ?>/dist/scripts/vendors.js" defer></script>
 		<script src="<?php bloginfo('template_url'); ?>/dist/scripts/main.js" defer></script>
-		<?php wp_head(); ?>
+		<?php if(current_user_can('administrator')) wp_head(); ?>
 	</head>
 
 	<body <?php body_class(); ?> data-component="Scrolly">
@@ -22,10 +22,12 @@
 				<a href="<?php bloginfo('url'); ?>" class="logo">
 					<?php bloginfo("name"); ?>
 				</a>
-				<?php wp_nav_menu(array(
+				<?php
+				$menu = is_user_logged_in() ? "logged_in_menu" : "logged_out_menu";
+				wp_nav_menu(array(
 					'container' => 'nav',
 					'container_class' => 'nav',
-					'theme_location' => 'main_menu',
+					'theme_location' => $menu,
 				)); ?>
 			</div>
 		</header>

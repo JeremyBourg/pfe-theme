@@ -2,10 +2,13 @@
 /* function definitions for blocks */
 add_theme_support("post-thumbnails");
 
-register_nav_menus(array(
-	'main_menu' => 'Menu principal',
-	'footer_menu' => 'Menu du pied de page',
-));
+add_action('init', function() {
+	register_nav_menus(array(
+		'logged_out_menu' => 'Menu public',
+		'logged_in_menu' => 'Menu privé',
+		'footer_menu' => 'Menu du pied de page',
+	));
+});
 
 
 function render_blocks() {
@@ -18,5 +21,3 @@ function render_blocks() {
 		}
 	}
 }
-
-$placeholder = get_bloginfo("template_url") . "/strawberry.jpg";
