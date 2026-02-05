@@ -10,6 +10,9 @@ add_action('init', function() {
 	));
 });
 
+if(!current_user_can("administrator")) {
+	add_filter('show_admin_bar', '__return_false');
+}
 
 function render_blocks() {
 	$part_dir = "./inc/";

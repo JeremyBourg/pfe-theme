@@ -13,7 +13,7 @@
 
 		<script src="<?php bloginfo('template_url'); ?>/dist/scripts/vendors.js" defer></script>
 		<script src="<?php bloginfo('template_url'); ?>/dist/scripts/main.js" defer></script>
-		<?php if(current_user_can('administrator')) wp_head(); ?>
+		<?php wp_head(); ?>
 	</head>
 
 	<body <?php body_class(); ?> data-component="Scrolly">
