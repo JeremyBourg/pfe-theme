@@ -26,38 +26,35 @@ fi
 # set these variables manually
 # export USERNAME=<user@jbourg.dectim.ca>
 # export PASSWORD=<password>
+if [[ -n $USERNAME && -n $PASSWORD ]]; then
+	:
+else
+	if [[ -z $USERNAME ]]; then
+		echo "ERROR: USERNAME envvar not set, not updating remote server"
+	fi
+	if [[ -z $PASSWORD ]]; then
+		echo "ERROR: PASSWORD envvar not set, not updating remote server"
+	fi
+	exit 1
+fi
 
 if ! diff -qr "dist" "parent/dist" &>/dev/null; then
 	echo "changes made to dist"
 	rm -rf "parent/dist"
 	cp -pr "dist/" "parent"
-	if [[ -n $USERNAME && -n $PASSWORD ]]; then
 		lftp -u $USERNAME,$PASSWORD -e \
 			"${SET_LFTP_OPTS} mirror -R --verbose parent $REMOTE_THEME_DIR/; bye;" -p 21 ftp://ftp.dectim.ca
 		exit 0
-	else
-		if [[ -z $USERNAME ]]; then
-			echo "ERROR: USERNAME envvar not set, not updating remote server"
-		fi
-		if [[ -z $PASSWORD ]]; then
-			echo "ERROR: PASSWORD envvar not set, not updating remote server"
-		fi
-		exit 1
-	fi
 fi
 
 for theme in ${themes[@]}; do
-	echo "updating $theme..."
-	if [[ -n $USERNAME && -n $PASSWORD ]]; then
-		lftp -u $USERNAME,$PASSWORD -e \
-			"${SET_LFTP_OPTS} mirror -R --verbose --delete $theme $REMOTE_THEME_DIR/ --exclude dist; bye;" -p 21 ftp://ftp.dectim.ca
-	else
-		if [[ -z $USERNAME ]]; then
-			echo "ERROR: USERNAME envvar not set, not updating remote server"
-		fi
-		if [[ -z $PASSWORD ]]; then
-			echo "ERROR: PASSWORD envvar not set, not updating remote server"
-		fi
-		exit 1
+	lftp -u $USERNAME,$PASSWORD -e \
+		"${SET_LFTP_OPTS} mirror -R --verbose --delete $theme $REMOTE_THEME_DIR/ --exclude dist; bye;" -p 21 ftp://ftp.dectim.ca
+	if [[ -z $USERNAME ]]; then
+		echo "ERROR: USERNAME envvar not set, not updating remote server"
 	fi
+	if [[ -z $PASSWORD ]]; then
+		echo "ERROR: PASSWORD envvar not set, not updating remote server"
+	fi
+	exit 1
 done
