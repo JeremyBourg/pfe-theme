@@ -9,6 +9,10 @@ if ! [ -d "dist" ]; then
 	exit 1
 fi
 
+if [ -e ".env"]; then
+	source .env
+fi
+
 REMOTE_THEME_DIR="/public_html/pfe/constructeur/wp-content/themes/"
 
 SET_LFTP_OPTS="set ftp:ssl-allow yes; set ssl:verify-certificate no;"
