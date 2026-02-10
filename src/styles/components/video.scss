@@ -1,0 +1,67 @@
+/* ==========================================================================
+video / component
+========================================================================== */
+
+.video {
+	background-color: var(--color-black);
+	text-align: center;
+	height: 0;
+	padding-bottom: 56.25%;
+	position: relative;
+	cursor: pointer;
+
+	img {
+		object-fit: cover;
+		height: 100%;
+		width: 100%;
+	}
+
+	--size: 200px;
+	.icon {
+		opacity: 0;
+		position: absolute;
+		height: calc(var(--size) / 2.5);
+		width: calc(var(--size) / 2.5);
+		top: 50%;
+		left: 50%;
+		transition: 0.4s $ease-out-expo;
+		transition-property: opacity, transform;
+		transform-origin: 0 0;
+		transform: translate(-50%, -50%);
+		z-index: 3;
+
+		.is-video-ready & {
+			opacity: 1;
+		}
+	}
+
+	.circle{
+		opacity: 0;
+		position: absolute;
+		background-color: var(--color-secondary);
+		height: var(--size);
+		width: var(--size);
+		top: calc(50% - var(--size) / 2);
+		left: calc(50% - var(--size) / 2);
+		transition: 0.4s $ease-out-expo;
+		transition-property: opacity, transform;
+		border-radius: 100%;
+		z-index: 2;
+
+		.is-video-ready & {
+			opacity: 1;
+		}
+	}
+
+	&:hover .icon{
+		transform: scale(0.8) translate(-50%, -50%);
+	}
+
+	&:hover .circle{
+		transform: scale(0.8);
+	}
+}
+
+.video__media {
+	@include cover();
+}
