@@ -9,7 +9,7 @@ if ! [ -d "dist" ]; then
 	exit 1
 fi
 
-if [ -e ".env"]; then
+if [ -e ".env" ]; then
 	source .env
 fi
 

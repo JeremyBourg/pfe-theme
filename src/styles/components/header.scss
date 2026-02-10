@@ -1,86 +1,218 @@
 /* ==========================================================================
-   header / 
+   header / component
    ========================================================================== */
 
 .header {
-    .wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-}
-.nav__brand {
-    font-family: var(--font-primary);
-    color: var(--color-black);
-    font-size: typo(28px, 40px);
-    font-weight: 900;
-    display: flex;
+    position: fixed;
+	width: 100%;
     align-items: center;
-    gap: 10px;
-    .icon {
-        color: var(--color-primary);
-    }
+    display: flex;
+    justify-content: space-between;
+    top: 0;
+    z-index: 10;
+    transition: transform 0.3s ease-out;
 
-    &:hover {
-        text-decoration: none;
+    .header-is-hidden.is-scrolling-down:not(.nav-is-active) & {
+        transform: translateY(-100%) translateY(4px);
     }
 }
-nav {
-    ul {
-        display: flex;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        gap: 50px;
-    }
-    a {
-        color: var(--color-black);
-        font-size: typo(14px);
-        font-weight: 700;
-        text-transform: uppercase;
-        position: relative;
-        &:before {
-            content: '';
-            position: absolute;
-            top: 100%;
-            left: 0;
-            height: 2px;
-            width: 100%;
-            background-color: var(--color-primary);
-            transform: scale(0);
-            transition: 0.4s all $ease-out-quad;
+
+
+.header__toggle {
+    --bar-height: 6px;
+    --bar-width: 40px;
+    --bar-spacing: 8px;
+
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+    width: 50px;
+    height: 50px;
+
+    z-index: 10;
+
+    span {
+        background: var(--color-white);
+        border-radius: 3px;
+        height: var(--bar-height);
+        width: var(--bar-width);
+        position: absolute;
+        transition: 0.3s all ease-out;
+
+        top: calc(50% - var(--bar-height) / 2);
+        left: calc(50% - var(--bar-width) / 2);
+
+        &:nth-child(1) {
+            top: calc(
+                50% - var(--bar-height) / 2 - var(--bar-height) -
+                    var(--bar-spacing)
+            );
         }
+        &:nth-child(3) {
+            top: calc(
+                50% - var(--bar-height) / 2 + var(--bar-height) +
+                    var(--bar-spacing)
+            );
+        }
+    }
 
-        &:hover {
-            text-decoration: none;
+    .nav-is-active & {
+        span {
+            top: calc(50% - var(--bar-height) / 2);
 
-            &:before {
-                transform: scale(1);
+            &:nth-child(1) {
+                transform: rotate(45deg);
+            }
+            &:nth-child(2) {
+                transform: scaleX(0);
+            }
+            &:nth-child(3) {
+                transform: rotate(-45deg);
             }
         }
     }
 
-    @media screen and (max-width: $breakpoint-md) {
+    @media screen and (min-width: $breakpoint-md) {
         display: none;
     }
 }
-.header__toggle {
-    background: none;
-    border: 0;
-    outline: 0;
-    display: none;
-    flex-direction: column;
-    gap: 3px;
-    width: 34px;
-    cursor: pointer;
 
-    @media screen and (max-width: $breakpoint-md) {
-        display: flex;
+.nav-primary {
+    background: var(--color-primary);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    padding-top: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    transform: translateY(-100%);
+    transition: transform 0.5s $ease-out-quart;
+    z-index: 9;
+
+    .nav-is-active & {
+        transform: translateY(0);
     }
-    span {
-        background: var(--color-primary);
-        height: 3px;
-        display: block;
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
         width: 100%;
+        transition: transform 0.5s ease-out;
+
+        a {
+            display: block;
+            text-align: center;
+        }
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
+        display: block;
+        background: unset;
+        position: static;
+        height: auto;
+        width: auto;
+        padding-top: 0;
+        transform: translateY(0);
+        z-index: 2;
+        overflow-y: visible;
+
+        ul {
+            flex-direction: row;
+            transform: translateY(0);
+        }
+    }
+}
+
+.nav-is-active body {
+    overflow: hidden;
+
+    @media screen and (min-width: $breakpoint-md) {
+        overflow: visible;
+    }
+}
+
+.header {
+    .wrapper {
+		margin: 24px auto;
+		width: 100%;
+		padding: 8px 16px;
+		background-color: var(--color-white);
+		width: 100%;
+		border-radius: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+	a {
+		color: var(--color-black);
+	}
+    nav a {
+        text-transform: uppercase;
+        font-size: typo(28px);
+        font-weight: 300;
+        letter-spacing: 4px;
+
+        @media screen and (min-width: $breakpoint-md){
+           text-transform: none; 
+           font-size: typo(20px);
+           font-weight: 500;
+           letter-spacing: normal;
+        }
+    }
+    .nav li:has(div){
+        div{
+            transform: translateY(-150%);
+            padding: 54px 24px;
+            display: none;
+
+            position: absolute;
+            top: 100%;
+            left: -24px;
+            background-color: var(--color-primary);
+            z-index: -11;
+            transition: transform 0.3s $ease-out-quad;
+
+            ul{
+                display: flex;
+                flex-direction: column;
+            }
+
+            @media screen and (min-width: $breakpoint-md){
+               display: block; 
+            }
+        }
+
+        &:hover div {
+            transform: translateY(0);
+        }
+    }
+}
+.logo {
+    a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    h1 {
+        font-size: typo(20px);
+        font-weight: 400;
+    }
+
+    svg {
+        font-size: typo(64px);
     }
 }

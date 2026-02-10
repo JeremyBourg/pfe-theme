@@ -1,35 +1,39 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title> tim québec</title>
 
-        <link rel="stylesheet" href="styles/main.css" />
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tim quebec</title>
 
-        <script src="scripts/main.js" defer></script>
-    </head>
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="stylesheet" href="styles/main.css" />
+    <script src="scripts/main.js" defer></script>
+</head>
 
-    <body>
-
-        <header class="header">
-            <div class="wrapper">
-            <a class="nav__brand" href="#">
-                <svg class="icon">
-                    <use xlink:href="#icon-logo"></use>
-                </svg>
-                tim québec
-            </a>
-            <nav>
+<body data-component="Scrolly">
+    <header class="header" data-component="Header">
+        <div class="wrapper">
+            <div class="logo">
+                <a href="index.html">
+                    <svg class="icon">
+                        <use xlink:href="#icon-logo"></use>
+                    </svg>
+                    <h1>tim quebec</h1>
+                </a>
+            </div>
+            <nav class="nav nav-primary">
                 <ul>
-                    <li><a href="#">Athlètes</a></li>
-                    <li><a href="#">Disciplines</a></li>
-                    <li><a href="#">Programmes</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="">Ville</a></li>
+                    <li><a href="">Urbanisme</a></li>
+                    <li><a href="">Loisirs et tourisme</a></li>
+                    <li><a href="nous-joindre.html">Nous joindre</a></li>
                 </ul>
             </nav>
             <button class="header__toggle js-toggle">
-                <span></span><span></span><span></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
         </div>
-        </header>
+    </header>
