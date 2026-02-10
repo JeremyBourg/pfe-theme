@@ -1,45 +1,12 @@
 <footer class="footer">
     <div class="wrapper">
-       <a class="nav__brand" href="#">
-                <svg class="icon">
-                    <use xlink:href="#icon-logo"></use>
-                </svg>
-                tim québec
-            </a>
-        <nav class="footer__nav">
-            <ul>
-                <li>
-                    <a href="#">
-                        <svg class="icon">
-                            <use xlink:href="#icon-instagram"></use>
-                        </svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <svg class="icon">
-                            <use xlink:href="#icon-dribble"></use>
-                        </svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <svg class="icon">
-                            <use xlink:href="#icon-twitter"></use>
-                        </svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <svg class="icon">
-                            <use xlink:href="#icon-youtube"></use>
-                        </svg>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-        <p class="copyright">Tous droits réservés © 2025 tim canada.</p>
+		<a class="nav__brand" href="<?php bloginfo("url"); ?>">
+			<svg class="icon">
+				<use xlink:href="#icon-logo"></use>
+			</svg>
+			<?php bloginfo("name"); ?>
+		</a>
+        <p class="copyright">Tous droits réservés © 2026 CPE aux Mille Jeux.</p>
     </div>
 </footer>
 <?php wp_footer(); ?>
