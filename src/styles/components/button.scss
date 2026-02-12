@@ -11,24 +11,10 @@ button /
     font-weight: bold;
     position: relative;
     overflow: hidden;
-    &::before {
-        border-radius: 25px;
-        background: var(--color-primary);
-        position: absolute;
-        top: -1px;
-        left: -1px;
-        width: calc(100% + 2px);
-        height: calc(100% + 2px);
-        content: '';
-        transition: 0.6s transform $ease-out-expo;
-        transform: translateY(100%);
-        z-index: -1;
-    }
-    &:hover {
-        color: var(--color-black);
-        text-decoration: none;
-        &::before {
-            transform: translateY(0);
-        }
-    }
+	transition: all 0.3s $ease-out-expo;
+
+	&:hover {
+		background-color: var(--color-primary);
+		color: var(--color-white);
+	}
 }

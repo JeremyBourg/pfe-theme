@@ -1,6 +1,8 @@
 <div class="section">
 	<div class="wrapper">
-		<h2>Bloc Vidéo YouTube</h2>
+		<div class="section__header">
+			<h2>Bloc vidéo YouTube</h2>
+		</div>
 	<?php
 			$url = get_sub_field("url");
 			preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match);

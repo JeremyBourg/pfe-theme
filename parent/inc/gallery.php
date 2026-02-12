@@ -1,10 +1,13 @@
-<div class="section section--no-pb">
+<div class="section">
 	<div class="wrapper">
 		<div class="section__header">
-			<h2>Image</h2>
+			<h2>Bloc galerie</h2>
 		</div>
 	</div>
-	<div class="swiper" data-component="Carousel">
+	<div class="swiper" data-component="Carousel"
+	<?php if(get_sub_field("loop")) echo "data-loop"; ?>
+	<?php if(get_sub_field("autoplay")) echo "data-autoplay"; ?>
+	>
 		<div class="swiper-wrapper">
 			<?php while(have_rows("gallery")): the_row(); ?>
 				<?php $image = get_sub_field("image"); ?>

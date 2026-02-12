@@ -13,7 +13,6 @@
 .section__header {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
     margin-bottom: 50px;
     p {
         max-width: 58%;
@@ -21,7 +20,6 @@
         margin-bottom: 0;
     }
     @media screen and (max-width: $breakpoint-md) {
-        align-items: flex-start;
         p {
             max-width: unset;
             text-align: left;

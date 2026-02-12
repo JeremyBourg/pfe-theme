@@ -1,7 +1,9 @@
 <?php if(have_rows("cards-blocks")): ?>
 <div class="section">
 	<div class="wrapper">
-		<h2>Bloc cartes</h2>
+		<div class="section__header">
+			<h2>Bloc cartes</h2>
+		</div>
 		<div class="cards">
 			<?php while(have_rows("cards-blocks")): the_row(); ?>	
 			<div class="card">

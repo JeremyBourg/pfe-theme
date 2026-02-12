@@ -7,7 +7,7 @@
 		</div>
 		<div class="hero__content">
 			<h1>
-				PARENT
+				<?php bloginfo("name"); ?>
 			</h1>
 			<p>
 				<?php the_content(); ?>
